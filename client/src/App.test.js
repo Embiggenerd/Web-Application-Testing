@@ -42,13 +42,13 @@ test('balls work', () => {
   expect(display.innerHTML).toBe('balls: 1')
   fireEvent.click(button)
   expect(display.innerHTML).toBe('balls: 2')
-  fireEvent.click(button) 
+  fireEvent.click(button)
   expect(display.innerHTML).toBe('balls: 3')
-  fireEvent.click(button) 
+  fireEvent.click(button)
   expect(display.innerHTML).toBe('balls: 0')
 })
 
-test('fouls work', ()=>{
+test('fouls work', () => {
   const { getByTestId } = render(<App />);
   const button = getByTestId(/addFoul/i)
   const display = getByTestId(/showStrikes/i)
@@ -57,6 +57,26 @@ test('fouls work', ()=>{
   expect(display.innerHTML).toBe('strikes: 1')
   fireEvent.click(button)
   expect(display.innerHTML).toBe('strikes: 2')
-  fireEvent.click(button) 
+  fireEvent.click(button)
   expect(display.innerHTML).toBe('strikes: 2')
+})
+
+test('hits work', () => {
+  const { getByTestId } = render(<App />);
+  const hButton = getByTestId(/addHit/i)
+  const fButton = getByTestId(/addFoul/i)
+  const sButton = getByTestId(/addStrike/i)
+  const bButton = getByTestId(/addBall/i)
+  const sDisplay = getByTestId(/showStrikes/i)
+  const bDisplay = getByTestId(/showBalls/i)
+  expect(sDisplay.innerHTML).toBe('strikes: 0')
+  expect(bDisplay.innerHTML).toBe('balls: 0')
+  fireEvent.click(sButton)
+  fireEvent.click(bButton)
+  fireEvent.click(fButton)
+  expect(sDisplay.innerHTML).toBe('strikes: 2')
+  expect(bDisplay.innerHTML).toBe('balls: 1')
+  fireEvent.click(hButton)
+  expect(sDisplay.innerHTML).toBe('strikes: 0')
+  expect(bDisplay.innerHTML).toBe('balls: 0')
 })
