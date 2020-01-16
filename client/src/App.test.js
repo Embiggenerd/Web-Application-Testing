@@ -42,8 +42,21 @@ test('balls work', () => {
   expect(display.innerHTML).toBe('balls: 1')
   fireEvent.click(button)
   expect(display.innerHTML).toBe('balls: 2')
-  fireEvent.click(button) // this is async version of ele.click, allows useEffect to be tested
+  fireEvent.click(button) 
   expect(display.innerHTML).toBe('balls: 3')
-  fireEvent.click(button) // this is async version of ele.click, allows useEffect to be tested
+  fireEvent.click(button) 
   expect(display.innerHTML).toBe('balls: 0')
+})
+
+test('fouls work', ()=>{
+  const { getByTestId } = render(<App />);
+  const button = getByTestId(/addFoul/i)
+  const display = getByTestId(/showStrikes/i)
+  expect(display.innerHTML).toBe('strikes: 0')
+  fireEvent.click(button)
+  expect(display.innerHTML).toBe('strikes: 1')
+  fireEvent.click(button)
+  expect(display.innerHTML).toBe('strikes: 2')
+  fireEvent.click(button) 
+  expect(display.innerHTML).toBe('strikes: 2')
 })
