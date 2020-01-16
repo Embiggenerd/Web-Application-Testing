@@ -1,19 +1,14 @@
 import React from 'react'
 
-export const Dashboard = ({ setStrikes, setBalls, balls, strikes }) => {
-    const handleAddBall = () => {
-        setBalls(balls + 1)
-    }
-
-    const handleAddStrike = () => {
-        setStrikes(strikes + 1)
-    }
+export const Dashboard = ({ handleAddBall, handleAddStrike, handleAddHit, handleAddFoul }) => {
 
     return (
         <div className="dashboard" data-testid="dashboard">
             <h1>Dashboard</h1>
-            <button onClick={handleAddStrike}>Strike</button>
-            <button onClick={handleAddBall}>Ball</button>
+            <button data-testid="addFoul" onClick={handleAddFoul}>Foul</button>
+            <button data-testid="addStrike" onClick={handleAddStrike}>Strike</button>
+            <button data-testid="addBall" onClick={handleAddBall}>Ball</button>
+            <button data-testid="addHit" onClick={handleAddHit}>Hit</button>
         </div>
     )
 }

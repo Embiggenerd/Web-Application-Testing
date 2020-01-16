@@ -14,6 +14,24 @@ function App() {
     setStrikes(0)
   }
 
+  const handleAddFoul = () => {
+    if (strikes <= 1) {
+      setStrikes(strikes + 1)
+    }
+  }
+
+  const handleAddBall = () => {
+    setBalls(balls + 1)
+  }
+
+  const handleAddHit = () => {
+    setHits(balls + 1)
+  }
+
+  const handleAddStrike = () => {
+    setStrikes(strikes + 1)
+  }
+
   useEffect(() => {
     if (balls >= 4) {
       resetBoard()
@@ -22,12 +40,17 @@ function App() {
     if (strikes >= 3) {
       resetBoard()
     }
+
+    if (hits >= 1) {
+      resetBoard()
+    }
+
   }, [balls, strikes, hits])
 
   return (
     <div className="App" data-testid="app">
       <Display balls={balls} strikes={strikes} />
-      <Dashboard setStrikes={setStrikes} setBalls={setBalls} balls={balls} strikes={strikes} />
+      <Dashboard handleAddFoul={handleAddFoul} handleAddBall={handleAddBall} handleAddStrike={handleAddStrike} handleAddHit={handleAddHit} />
     </div>
   );
 }
